@@ -9,7 +9,9 @@ router.post('/admin/product/new',isAuthenticatedUser ,authorizeRoles('admin') , 
 router.put('/admin/product/:id', isAuthenticatedUser ,authorizeRoles('admin') , productController.updateProduct)
 router.delete('/admin/product/:id', isAuthenticatedUser ,authorizeRoles('admin') ,  productController.deleteProduct)
 router.get('/product/:id',productController.getProductDetails)
-router.post('/product/review', isAuthenticatedUser, productController.createProductReview)
+router.post('/review', isAuthenticatedUser, productController.createProductReview)
+router.get('/reviews', productController.getProsuctReviews)
+router.delete('/reviews', isAuthenticatedUser, productController.deleteReview)
 
 
 module.exports = router
