@@ -8,7 +8,7 @@
     "start": "node backend/server.js",
     "dev": "nodemon backend/server.js"
   },
-  "author": "ankur singh",
+  "author": "ankur singh ",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
