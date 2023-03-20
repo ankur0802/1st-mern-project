@@ -1,42 +1,27 @@
 import React from "react";
-import { ReactNavbar } from "overlay-navbar";
+import { Link } from "react-router-dom";
+import logo from "../../logo.png";
+import { ImSearch } from "react-icons/im";
+import { TfiShoppingCartFull } from "react-icons/tfi";
+import { CgProfile } from "react-icons/cg";
+import "./Navbar.scss";
 
+const Navbar = () => {
+  return (
+    <nav className="header">
+      <img src={logo} alt="logo" />
 
-const options = {
-  burgerColorHover: "#eb4034",
-  
-  logoWidth: "20vmax",
-  navColor1: "white",
-  logoHoverSize: "10px",
-  logoHoverColor: "#eb4034",
-  link1Text: "Home",
-  link2Text: "Products",
-  link3Text: "Contact",
-  link4Text: "About",
-  link1Url: "/",
-  link2Url: "/products",
-  link3Url: "/contact",
-  link4Url: "/about",
-  link1Size: "1.3vmax",
-  link1Color: "rgba(35, 35, 35,0.8)",
-  nav1justifyContent: "flex-end",
-  nav2justifyContent: "flex-end",
-  nav3justifyContent: "flex-start",
-  nav4justifyContent: "flex-start",
-  link1ColorHover: "#eb4034",
-  link1Margin: "1vmax",
-  profileIconUrl: "/login",
-  profileIconColor: "rgba(35, 35, 35,0.8)",
-  searchIconColor: "rgba(35, 35, 35,0.8)",
-  cartIconColor: "rgba(35, 35, 35,0.8)",
-  profileIconColorHover: "#eb4034",
-  searchIconColorHover: "#eb4034",
-  cartIconColorHover: "#eb4034",
-  cartIconMargin: "1vmax",
+      <div>
+        <Link to="/home">Home</Link>
+        <Link to="/products">Products</Link>
+        <Link to="/about">About Us</Link>
+        <Link to="/contact">Contact Us</Link>
+      </div>
+      <ImSearch />
+      <TfiShoppingCartFull />
+      <CgProfile />
+    </nav>
+  );
 };
 
-const Header = () => {
-  return <ReactNavbar {...options} />;
-};
-
-export default Header;
+export default Navbar;
