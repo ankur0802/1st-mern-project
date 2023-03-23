@@ -2,17 +2,25 @@ import { allproductFail, allproductSuccess, allproductRequest } from '../store/s
 import { allproductDetailFail,allproductDetailSuccess, allproductDetailRequest } from '../store/slices/productDetailsSlice'
 import axios from 'axios'
 
-export const getProduct = ()=> async (dispatch)=>{
+export const getProduct = (keyword='', currentPage=1, price = [0, 25000], category, ratings=0)=> async (dispatch)=>{
     try {
 
         dispatch(allproductRequest())
         
-        const {data} = await axios.get('/api/v1/product')
+        
+        let link = `/api/v1/product?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&ratings[gte]=${ratings}`
+
+        if(category) {
+            link = `/api/v1/product?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&ratings[gte]=${ratings}`
+            
+            }
+
+
+        const {data} = await axios.get(link)
 
         dispatch(allproductSuccess(data))
 
      
-
 
     } catch (error) {
         dispatch(allproductFail(error.response.data.message))

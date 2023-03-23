@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import {CgMouse} from 'react-icons/cg'
 import './Home.css'
-import Product from './ProductCard'
+import ProductCard from './ProductCard'
 import MetaData from '../navbar/MetaData'
 import {getProduct} from '../../actions/productActions'
 import {useDispatch, useSelector} from 'react-redux'
@@ -39,7 +39,7 @@ const Home = () => {
 <h2 className="homeHeading">Featured Products</h2>
 <div className="container" id="container">
 {products && products.map((product, index)=>(
-    <Product key={index} product={product} />
+    <ProductCard key={index} product={product} />
 ))}
 </div>
 

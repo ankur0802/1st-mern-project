@@ -7,6 +7,7 @@ import './ProductDetails.css'
 import ReactStars from 'react-rating-stars-component';
 import ReviewCard from './ReviewCard'
 import Loader from '../Loader/Loader';
+import MetaData from '../navbar/MetaData';
 
 const ProductDetails = () => {
     const params = useParams();
@@ -37,6 +38,7 @@ const ProductDetails = () => {
     <>
     {isLoading ? <Loader/> : (
     <>
+      <MetaData title={`${product.name}--ECOMMERCE`} />
 
     <div className="ProductDetails">
         <div>

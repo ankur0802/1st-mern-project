@@ -12,14 +12,16 @@ const Navbar = () => {
       <img src={logo} alt="logo" />
 
       <div>
-        <Link to="/home">Home</Link>
+        <Link to="/">Home</Link>
         <Link to="/products">Products</Link>
         <Link to="/about">About Us</Link>
         <Link to="/contact">Contact Us</Link>
       </div>
-      <ImSearch />
-      <TfiShoppingCartFull />
-      <CgProfile />
+      <Link to='/search' ><ImSearch /></Link>
+      <Link to='/cart' > <TfiShoppingCartFull /></Link>
+      <Link to='/login' ><CgProfile /></Link>
+     
+      
     </nav>
   );
 };

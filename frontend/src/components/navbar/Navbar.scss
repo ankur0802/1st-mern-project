@@ -51,4 +51,14 @@ $bg: rgb(16, 16, 16);
       color: rgb(216, 216, 216);
     }
   }
+  > a {
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    margin: 20px;
+
+    &:hover {
+      color: rgb(216, 216, 216);
+    }
+  }
 }
