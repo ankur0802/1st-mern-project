@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 const LoginSignup = () => {
+  
 
   const dispatch = useDispatch();
 
@@ -39,8 +40,8 @@ const LoginSignup = () => {
 
   const {name, email, password} = user;
 
-  const [avatar, setAvatar] = useState();
-  const [avatarPreview, setAvatarPreview] = useState('Profile.png');
+  const [avatar, setAvatar] = useState('/Profile.png');
+  const [avatarPreview, setAvatarPreview] = useState('/Profile.png');
 
 
   const loginSubmit = (e)=>{
@@ -53,11 +54,12 @@ const LoginSignup = () => {
 
     const myForm = new FormData();
 
-    myForm.set('name', name);
-    myForm.set('email', email);
-    myForm.set('password', password);
-    myForm.set('avatar', avatar);
+    myForm.append('name', name);
+    myForm.append('email', email);
+    myForm.append('password', password);
+    myForm.append('avatar', avatar);
     dispatch(register(myForm))
+    
 
   }
 

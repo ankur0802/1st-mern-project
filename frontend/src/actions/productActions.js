@@ -1,4 +1,4 @@
-import { allproductFail, allproductSuccess, allproductRequest } from '../store/slices/productSlice'
+import { allproductFail, allproductSuccess, allproductRequest ,clearErrors} from '../store/slices/productSlice'
 import { allproductDetailFail,allproductDetailSuccess, allproductDetailRequest } from '../store/slices/productDetailsSlice'
 import axios from 'axios'
 
@@ -40,4 +40,10 @@ export const getProductDetails = (id)=> async(dispatch)=>{
     } catch (error) {
         dispatch(allproductDetailFail(error.response.data.message))
     }
+}
+
+
+// Clearing Errors 
+export const clearError = ()=> async(dispatch)=>{
+    dispatch(clearErrors());
 }

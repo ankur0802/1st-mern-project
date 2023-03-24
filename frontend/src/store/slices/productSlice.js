@@ -25,10 +25,13 @@ const productSlice = createSlice({
            state.isLoading = false;
            state.error= action.payload;
 
-        }
+        },
+        clearErrors(state,action){
+            state.error=null;
+        },
     }
 })
- export const { allproductRequest, allproductFail, allproductSuccess}  = productSlice.actions; 
+ export const { allproductRequest, allproductFail, allproductSuccess, clearErrors}  = productSlice.actions; 
 
 export default productSlice;
 
