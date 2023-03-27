@@ -15,13 +15,21 @@ import { useSelector } from "react-redux";
 import Account from "./components/Account/Account";
 import ProctedRoutes from "./components/Route/ProctedRoutes";
 import UpdateProfile from './components/User/UpdateProfile'
+import UpdatePassword from './components/User/UpdatePassword'
+import ForgotPassword from './components/User/ForgotPassword'
+import ResetPassword from './components/User/ResetPassword'
+import Cookies from 'js-cookie'
+import Cart from "./components/Cart/Cart";
 
 
 function App() {
+  const token = Cookies.get();
+
 
   const {isAuthenticated, user}= useSelector((state)=>state.user)
 
   useEffect(()=>{
+ 
 
     store.dispatch(loadUser())
 
@@ -40,12 +48,18 @@ function App() {
           <Route path="/search" element={<Search/>} />
 
           <Route element={<ProctedRoutes/>} >
+            
           <Route path="/account" element={<Account/>} />
           <Route path="/me/update" element={<UpdateProfile/>} />
+          <Route path="/password/update" element={<UpdatePassword/>} />
 
           </Route>
 
+          <Route path="/password/forgot" element={<ForgotPassword/>} />
+          <Route path="/password/reset/:token" element={<ResetPassword/>} />
+          <Route path="/cart" element={<Cart/>} />
           <Route path="/login" element={<LoginSignup/>} />
+
       </Routes>
      <Footer/>
     </Router>

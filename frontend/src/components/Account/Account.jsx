@@ -6,6 +6,7 @@ import './Account.css'
 import Loader from '../Loader/Loader'
 import { useNavigate } from 'react-router-dom';
 
+
 const Account = () => {
 
     const navigate = useNavigate();
@@ -23,6 +24,7 @@ const Account = () => {
   return (
    <>
    {isLoading ? <Loader/> : ( <>
+    
         <MetaData title={`${user.name}'s Profile`} />
         <div className="profileContainer">
             <div>

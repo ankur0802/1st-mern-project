@@ -26,12 +26,31 @@ const profileSlice = createSlice({
            state.isUpdated= false;
 
         },
+        updatePasswordRequest(state, action){
+           
+           state.isLoading = true;
+        },
+        updatePasswordSuccess(state, action){
+           state.isLoading = false;
+           state.isUpdated = action.payload;
+        
+        },
+        updatePasswordFail(state, action){
+           state.isLoading = false;
+           state.error= action.payload;
+
+        },
+        updatePasswordReset(state, action){
+          
+           state.isUpdated= false;
+
+        },
         clearErrors(state,action){
             state.error=null;
         },
     }
 })
- export const { updateProfileFail, updateProfileRequest, updateProfileSuccess, updateProfileReset,clearErrors}  = profileSlice.actions; 
+ export const { updateProfileFail, updateProfileRequest, updateProfileSuccess, updateProfileReset,clearErrors , updatePasswordFail, updatePasswordRequest, updatePasswordReset, updatePasswordSuccess }  = profileSlice.actions; 
 
 export default profileSlice;
 

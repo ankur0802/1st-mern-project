@@ -17,6 +17,7 @@ const userSlice = createSlice({
       state.isLoading = false;
       state.user = action.payload;
       state.isAuthenticated = true;
+     
       
     },
     loginFail(state, action) {
@@ -69,9 +70,39 @@ const userSlice = createSlice({
         state.isLoading = false;
       state.error = action.payload;
     },
+    forgotPasswordRequest(state, action) {
+      
+      state.isLoading = true;
+      state.error=null;
+     
+    },
+    forgotPasswordSuccess(state, action) {
+      state.isLoading = false;
+      state.message = action.payload;
+      
+    },
+    forgotPasswordFail(state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
+    resetPasswordRequest(state, action) {
+      
+      state.isLoading = true;
+      state.error=null;
+     
+    },
+    resetPasswordSuccess(state, action) {
+      state.isLoading = false;
+      state.success = action.payload;
+      
+    },
+    resetPasswordFail(state, action) {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
-export const { loginRequest, loginSuccess, loginFail, clearErrors, registerUserFail, registerUserRequest, registerUserSuccess, loadUserFail, loadUserRequest, loadUserSuccess , logoutFail, logoutSuccess} =
+export const { loginRequest, loginSuccess, loginFail, clearErrors, registerUserFail, registerUserRequest, registerUserSuccess, loadUserFail, loadUserRequest, loadUserSuccess , logoutFail, logoutSuccess, forgotPasswordFail, forgotPasswordRequest, forgotPasswordSuccess, resetPasswordFail, resetPasswordRequest, resetPasswordSuccess } =
 userSlice.actions;
 
 export default userSlice;

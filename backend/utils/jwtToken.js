@@ -16,6 +16,7 @@ const sendToken = (user, statusCode, res) => {
     token,
     user,
   });
+  
 };
 
 module.exports = sendToken;

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getProductDetails} from '../../actions/productActions'
 import {useParams} from 'react-router-dom'
@@ -8,6 +8,9 @@ import ReactStars from 'react-rating-stars-component';
 import ReviewCard from './ReviewCard'
 import Loader from '../Loader/Loader';
 import MetaData from '../navbar/MetaData';
+import { addItemsToCart } from '../../actions/cartActions'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductDetails = () => {
     const params = useParams();
@@ -31,13 +34,34 @@ const ProductDetails = () => {
         isHalf:true
     
     }
+
+    const [quantity, setQuantity] = useState(1);
+
+    const decreaseQuantity = ()=>{
+        if(1 >= quantity) return;
+        let qty = quantity-1;
+        setQuantity(qty)
+    }
+
+    const increaseQuantity = ()=>{
+        if(product.stock <= quantity) return;
+        let qty = quantity+1;
+        setQuantity(qty)
+    }
+
+    const addToCartHandler = ()=>{
+        dispatch(addItemsToCart(params.id, quantity));
+        toast.success('Item added To Cart')
+    }
     
 
 
   return (
     <>
+   
     {isLoading ? <Loader/> : (
     <>
+     <ToastContainer/>
       <MetaData title={`${product.name}--ECOMMERCE`} />
 
     <div className="ProductDetails">
@@ -71,11 +95,11 @@ const ProductDetails = () => {
                     <h1>{`₹${product.price}`}</h1>
                     <div className="detailsBlock-3-1">
                         <div className="detailsBlock-3-1-1">
-                            <button>-</button>
-                            <input type="number" value='1' />
-                            <button>+</button>
+                            <button onClick={decreaseQuantity} >-</button>
+                            <input readOnly type="number" value={quantity} />
+                            <button onClick={increaseQuantity} >+</button>
                         </div>
-                        <button>Add to Cart</button>
+                        <button onClick={addToCartHandler} >Add to Cart</button>
                     </div>
 
                         <p>
