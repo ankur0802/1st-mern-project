@@ -16,7 +16,7 @@ const LoginSignup = () => {
   
 
   const dispatch = useDispatch();
-
+  // const location = useLocation();
   const navigate = useNavigate();
 
 
@@ -83,6 +83,9 @@ const LoginSignup = () => {
      }
 
   }
+
+  // const redirect = location.search ? location.search.split('=')[1] : '/account';
+  
 
   useEffect(()=>{
     if(error){

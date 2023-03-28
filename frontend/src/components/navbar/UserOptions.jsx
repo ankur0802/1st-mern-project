@@ -42,7 +42,7 @@ const {cartItems} = useSelector((state)=>state.cart)
     const logoutUser = ()=>{
         dispatch(logout())
         toast.success('Logout successfull')
-
+        navigate('/login')
     }
 
 

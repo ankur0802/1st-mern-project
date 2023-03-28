@@ -4,12 +4,14 @@ import CartItemsCard from './CartItemsCard'
 import { useSelector, useDispatch } from 'react-redux'
 import { addItemsToCart, removeItemsFromCart } from '../../actions/cartActions'
 import { Typography } from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart';
 
 const Cart = () => {
 
     const dispatch = useDispatch();
+  const navigate = useNavigate();
+
     const {cartItems} = useSelector((state)=>state.cart)
     
 
@@ -32,6 +34,10 @@ const Cart = () => {
 
     const deleteCartItems = (id)=>{
         dispatch(removeItemsFromCart(id))
+    }
+
+    const checkoutHandler = ()=>{
+        navigate('/shipping')
     }
 
   return (
@@ -75,7 +81,7 @@ const Cart = () => {
                 </div>
                 <div></div>
                 <div className="checkOutBtn">
-                    <button>Check Out</button>
+                    <button onClick={checkoutHandler} >Check Out</button>
                 </div>
             </div>
         </div>

@@ -37,11 +37,16 @@ const cartSlice = createSlice({
         removeCartItem(state, action){
             let removeItem = state.cartItems.filter((i)=>i.product !== action.payload);
             state.cartItems = removeItem;
+        
+        },
+        saveShippingInfo(state, action){
+            
+            state.shippingInfo = action.payload;
         }
         
     }
 })
- export const { addToCart,removeCartItem }  = cartSlice.actions; 
+ export const { addToCart,removeCartItem , saveShippingInfo}  = cartSlice.actions; 
 
 export default cartSlice;
 

@@ -1,12 +1,10 @@
-import {addToCart, removeCartItem } from '../store/slices/cartSlice'
+import {addToCart, removeCartItem , saveShippingInfo} from '../store/slices/cartSlice'
 import axios from 'axios'
 
 
 // ADD TO CART
 export const addItemsToCart = (id, quantity) => async (dispatch, getState) =>{
-    try {
-        
-
+  
         const {data} = await axios.get(`/api/v1/product/${id}`)
 
         dispatch(addToCart({
@@ -19,14 +17,7 @@ export const addItemsToCart = (id, quantity) => async (dispatch, getState) =>{
         }));
 
         localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
-        
 
-
-
-    } catch (error) {
-        // dispatch(loginFail(error.response.data.message))
-        
-    }
 }
 
 
@@ -38,6 +29,12 @@ export const removeItemsFromCart = (id) => async (dispatch, getState) =>{
 
         localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems))
         
+}
 
+// SHAVE SHIPPING INFO 
+
+export const saveshippingInfo = (data)=> async(dispatch)=>{
+    dispatch(saveShippingInfo(data));
+    localStorage.setItem('shippingInfo', JSON.stringify(data))
 }
 
