@@ -13,7 +13,7 @@ import { loadUser } from "./actions/userAction";
 import UserOptions from "./components/navbar/UserOptions";
 import { useSelector } from "react-redux";
 import Account from "./components/Account/Account";
-import ProtectedRoutes from "./components/Route/ProctedRoutes";
+import Protected from "./components/Route/Protected";
 import UpdateProfile from './components/User/UpdateProfile'
 import UpdatePassword from './components/User/UpdatePassword'
 import ForgotPassword from './components/User/ForgotPassword'
@@ -28,6 +28,10 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import ElementsLayout from "./components/Route/ElementLayout";
 import OrderSuccess from "./components/Cart/OrderSuccess";
+import MyOrders from "./components/Order/MyOrders";
+import OrderDetails from "./components/Order/OrderDetails";
+import Dashboard from './components/Admin/Dashboard'
+
 
 function App() {
   const token = Cookies.get();
@@ -41,7 +45,6 @@ function App() {
     const {data} = await axios.get('/api/v1/stripeapikey');
    
 
-    console.log(data.stripeApiKey);
     setStripeApiKey(data.stripeApiKey);
   }
 
@@ -67,24 +70,75 @@ function App() {
           <Route path="/products/:keyword" element={<Products/>} />
           <Route path="/search" element={<Search/>} />
 
-          <Route element={<ProtectedRoutes/>} >
+          
             
-          <Route path="/account" element={<Account/>} />
-          <Route path="/me/update" element={<UpdateProfile/>} />
-          <Route path="/password/update" element={<UpdatePassword/>} />
-          <Route path="/shipping" element={<Shipping/>} />
-          <Route path="/order/confirm" element={<ConfirmOrder/>} />
-          <Route path="/success" element={<OrderSuccess/>} />
+          <Route path="/account" element={
+             <Protected isAuthenticated={isAuthenticated}>
+             <Account/>
+           </Protected>
+         } />
+            
+          <Route path="/me/update" element={
+             <Protected isAuthenticated={isAuthenticated}>
+             <UpdateProfile/>
+           </Protected>
+         } />
+            
+          <Route path="/password/update" element={
+             <Protected isAuthenticated={isAuthenticated}>
+             <UpdatePassword/>
+           </Protected>
+         } />
+            
+          <Route path="/shipping" element={
+             <Protected isAuthenticated={isAuthenticated}>
+             <Shipping/>
+           </Protected>
+         } />
+            
+          <Route path="/order/confirm" element={
+             <Protected isAuthenticated={isAuthenticated}>
+            <ConfirmOrder/>
+           </Protected>
+         } />
+            
+          <Route path="/success" element={
+             <Protected isAuthenticated={isAuthenticated}>
+             <OrderSuccess/>
+           </Protected>
+         } />
+            
+          <Route path="/orders" element={
+             <Protected isAuthenticated={isAuthenticated}>
+             <MyOrders/>
+           </Protected>
+         } />
+            
+          <Route path="/order/:id" element={
+             <Protected isAuthenticated={isAuthenticated}>
+             <OrderDetails/>
+           </Protected>
+         } />
 
-          {/* <Elements stripe={loadStripe(stripeApiKey)} >
-          <Route path="/process/payment" element={<Payment/>} />
-          // </Elements> */} --not working
+          <Route path="/admin/dashboard" element={
+             <Protected isAuthenticated={isAuthenticated}>
+             <Dashboard/>
+           </Protected>
+         } />
 
-          <Route element={<ElementsLayout stripe={loadStripe(stripeApiKey)} />} >
-                <Route path="/process/payment" element={<Payment />} />
-          </Route>
+          
 
-          </Route>
+          <Route element={<Protected isAuthenticated={isAuthenticated} >
+            <ElementsLayout stripe={loadStripe(stripeApiKey)} />
+          </Protected>} >
+                <Route path="/process/payment" element={
+             <Payment/>
+          } />
+          </Route> 
+
+       
+
+        
 
          
 

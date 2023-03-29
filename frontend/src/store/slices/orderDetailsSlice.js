@@ -1,33 +1,36 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { }
+const initialState = {
+    order:{}
+ }
 
-const orderSlice = createSlice({
-    name:'order',
+const orderDetailsSlice = createSlice({
+    name:'orderDetails',
     initialState,
     reducers:{
       
-        createOrderRequest(state, action){
+      
+        orderDetailRequest(state, action){
            
            state.isLoading = true;
         },
-        createOrderSuccess(state, action){
+        orderDetailSuccess(state, action){
            state.isLoading = false;
            state.order = action.payload;
         
         },
-        createOrderFail(state, action){
+        orderDetailFail(state, action){
            state.isLoading = false;
            state.error= action.payload;
 
         },
-      
+       
         clearErrors(state,action){
             state.error=null;
         },
     }
 })
- export const {clearErrors , createOrderFail, createOrderRequest, createOrderSuccess }  = orderSlice.actions; 
+ export const {clearErrors , orderDetailFail, orderDetailRequest, orderDetailSuccess }  = orderDetailsSlice.actions; 
 
-export default orderSlice;
+export default orderDetailsSlice;
 
