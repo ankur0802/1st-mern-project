@@ -31,6 +31,9 @@ import OrderSuccess from "./components/Cart/OrderSuccess";
 import MyOrders from "./components/Order/MyOrders";
 import OrderDetails from "./components/Order/OrderDetails";
 import Dashboard from './components/Admin/Dashboard'
+import ProductList from './components/Admin/ProductList'
+import NewProduct from "./components/Admin/NewProduct";
+import UpdateProduct from "./components/Admin/UpdateProduct";
 
 
 function App() {
@@ -121,8 +124,34 @@ function App() {
          } />
 
           <Route path="/admin/dashboard" element={
-             <Protected isAuthenticated={isAuthenticated}>
+             <Protected isAuthenticated={isAuthenticated} isAdmin={true}>
              <Dashboard/>
+           </Protected>
+         } />
+
+          
+
+          <Route path="/admin/products" element={
+             <Protected isAuthenticated={isAuthenticated} isAdmin={true}>
+             <ProductList/>
+           </Protected>
+         } />
+
+          
+          
+
+          <Route path="/admin/product" element={
+             <Protected isAuthenticated={isAuthenticated} isAdmin={true}>
+             <NewProduct/>
+           </Protected>
+         } />
+
+          
+          
+
+          <Route path="/admin/product/:id" element={
+             <Protected isAuthenticated={isAuthenticated} isAdmin={true}>
+             <UpdateProduct/>
            </Protected>
          } />
 

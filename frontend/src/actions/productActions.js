@@ -1,6 +1,9 @@
-import { allproductFail, allproductSuccess, allproductRequest ,clearErrors} from '../store/slices/productSlice'
+import { allproductFail, allproductSuccess, allproductRequest ,clearErrors, adminproductFail, adminproductRequest, adminproductSuccess} from '../store/slices/productSlice'
 import { allproductDetailFail,allproductDetailSuccess, allproductDetailRequest } from '../store/slices/productDetailsSlice'
 import axios from 'axios'
+
+
+// get All products 
 
 export const getProduct = (keyword='', currentPage=1, price = [0, 25000], category, ratings=0)=> async (dispatch)=>{
     try {
@@ -29,6 +32,29 @@ export const getProduct = (keyword='', currentPage=1, price = [0, 25000], catego
     }
 }
 
+
+// get All products for admin  
+
+export const getAdminProduct = ()=> async (dispatch)=>{
+    try {
+
+        dispatch(adminproductRequest())
+        
+    
+        const {data} = await axios.get(`/api/v1/admin/products`)
+
+        dispatch(adminproductSuccess(data.products))
+
+     
+
+    } catch (error) {
+        dispatch(adminproductFail(error.response.data.message))
+        
+       
+    }
+}
+
+// Get product details 
 
 export const getProductDetails = (id)=> async(dispatch)=>{
     try {
