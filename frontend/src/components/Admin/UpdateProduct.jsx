@@ -49,7 +49,7 @@ const categories = [
 
   useEffect(()=>{
 
-    if(product && product.id !== productId){
+    if(product && product._id !== productId){
         dispatch(getProductDetails(productId))
     }else{
         setName(product.name);
@@ -57,7 +57,7 @@ const categories = [
         setCategory(product.category);
         setDescription(product.description);
         setStock(product.stock);
-        setOldImages(product.oldimages);
+        setOldImages(product.images);
     }
 
 
@@ -79,7 +79,7 @@ const categories = [
   },[dispatch, error, navigate, isUpdated, productId, product, updateError])
   
   
-  const createProductSubmitHandler = (e)=>{
+  const updateProductSubmitHandler = (e)=>{
     e.preventDefault();
 
     const myForm = new FormData();
@@ -98,11 +98,12 @@ const categories = [
 
   }
 
-  const createProductImageChange = (e)=>{
+  const updateProductImageChange = (e)=>{
     const files = Array.from(e.target.files)
 
     setImages([]);
-    setImagePreview([])
+    setImagePreview([]);
+    setOldImages([])
 
     files.forEach((file)=>{
         const reader = new FileReader();
@@ -131,7 +132,7 @@ const categories = [
             <form 
              className='createProductForm'
              encType='multipart/form-data'
-             onSubmit={createProductSubmitHandler}
+             onSubmit={updateProductSubmitHandler}
             >
                 <h1>Update Product</h1>
                 <div>
@@ -151,6 +152,7 @@ const categories = [
                      type='number'
                      placeholder='Price'
                      required
+                     value={price}
                      onChange={(e)=>setPrice(e.target.value)}
                      />
                 </div>
@@ -166,7 +168,7 @@ const categories = [
                 </div>
                 <div>
                     <AccountTreeIcon/>
-                    <select onChange={(e)=>setCategory(e.target.value)}>
+                    <select onChange={(e)=>setCategory(e.target.value)} value={category}>
                         <option value="">Choose Category</option>
                         {categories.map((cat)=>(
                             <option value={cat} key={cat}>
@@ -182,6 +184,7 @@ const categories = [
                      type='number'
                      placeholder='Stock'
                      required
+                     value={stock}
                      onChange={(e)=>setStock(e.target.value)}
                      />
                 </div>
@@ -192,13 +195,19 @@ const categories = [
                      name='avatar'
                      accept='image/*'
                      multiple
-                     onChange={createProductImageChange}
+                     onChange={updateProductImageChange}
                      />
                 </div>
                 
                 <div id="createProductFormImage">
+                    {oldimages && oldimages .map((image, index)=>(
+                        <img src={image.url} key={index} alt='OldProduct Preview' />
+                    ))}
+                </div>
+                
+                <div id="createProductFormImage">
                     {imagePreview.map((image, index)=>(
-                        <img src={image} key={index} alt='Avatar Preview' />
+                        <img src={image} key={index} alt='Product Preview' />
                     ))}
                 </div>
 
@@ -207,7 +216,7 @@ const categories = [
                 type='submit'
                 disabled={isLoading ? true:false}
                 >
-                    Create
+                    Update
                 </Button>
 
 

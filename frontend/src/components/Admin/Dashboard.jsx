@@ -7,12 +7,16 @@ import {Doughnut, Line} from 'react-chartjs-2'
 import Chart from 'chart.js/auto';
 import { useDispatch, useSelector } from 'react-redux'
 import { getAdminProduct } from '../../actions/productActions'
+import { getAllOrders } from '../../actions/adminOrderActions'
+import { gettAllUsers } from '../../actions/adminUserAction'
 
 
 const Dashboard = () => {
 
   const dispatch = useDispatch()
   const { products } = useSelector((state)=>state.products)
+  const { orders } = useSelector((state)=>state.adminOrder)
+  const { users } = useSelector((state)=>state.allUsers)
 
   let outOfStock = 0;
 
@@ -24,9 +28,17 @@ const Dashboard = () => {
 
   useEffect(()=>{
 
+    dispatch(getAllOrders())
     dispatch(getAdminProduct())
+    dispatch(gettAllUsers())
 
   },[dispatch])
+
+  let totalAmount = 0;
+  orders && 
+     orders.forEach((item)=>{
+      totalAmount+= item.totalPrice;
+     })
 
 
   const lineState = {
@@ -36,7 +48,7 @@ const Dashboard = () => {
         label:'TOTAL AMOUNT',
         backgroundColor: ['tomato'],
         hoverBackgroundColor: ['rgb(197, 72, 49)'],
-        data:[0, 4000],
+        data:[0, totalAmount],
       }
     ]
 
@@ -65,7 +77,7 @@ const Dashboard = () => {
             <div className="dashboardSummary">
               <div>
                 <p>
-                  Total Amount <br/> ₹2000
+                  Total Amount <br/> ₹{totalAmount}
                 </p>
               </div>
             </div>
@@ -78,11 +90,11 @@ const Dashboard = () => {
             </Link>
             <Link to='/admin/orders' >
               <p>Orders</p>
-              <p>4</p>
+              <p>{orders && orders.length}</p>
             </Link>
             <Link to='/admin/users' >
               <p>Users</p>
-              <p>5</p>
+              <p>{ users && users.length }</p>
             </Link>
 
             </div>

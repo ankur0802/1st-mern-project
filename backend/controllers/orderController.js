@@ -102,10 +102,14 @@ exports.updateOrder = catchAsyncErrors (async (req, res, next)=>{
         return next(new Errorhandler('You have already delivered this Order', 400))
     }
 
-    order.orderItems.forEach(async (ord)=>{
-        await updateStock(ord.product, ord.quantity)
-       
-    })
+    if(req.body.status==='Shipped'){
+        order.orderItems.forEach(async (ord)=>{
+            await updateStock(ord.product, ord.quantity)
+           
+        })
+    
+    }
+
 
     order.orderStatus = req.body.status;
 
@@ -134,13 +138,14 @@ async function updateStock(id, quantity){
 //delete order -- Admin 
 exports.deleteOrder = catchAsyncErrors (async (req, res, next)=>{
 
-    const order = await Order.findb(req.params.id);
+    const order = await Order.findById(req.params.id);
+   
 
     if(!order){
         return next(new Errorhandler('Order not found with this id', 404))
     }
 
-   await order.remove();
+   await Order.findByIdAndDelete(req.params.id);
 
     res.status(200).json({
         success:true,

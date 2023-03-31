@@ -294,14 +294,20 @@ exports.updateRole = catchAsyncErrors(async (req, res, next)=>{
 
 // Delete User --Admin
 exports.deleteUser = catchAsyncErrors(async (req, res, next)=>{
-
+ 
  const user = await User.findById(req.params.id)
+ 
 
 if(!user){
   return next(new Errorhandler(`user not found with the given id ${req.params.id}`,400))
 }  
 
-await user.remove();
+const imageId = user.avatar.public_id;
+
+await cloudinary.v2.uploader.destroy(imageId)
+
+
+await User.findByIdAndDelete(req.params.id);
 
   res.status(200).json({
     success:true,

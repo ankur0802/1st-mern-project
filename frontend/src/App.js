@@ -34,6 +34,12 @@ import Dashboard from './components/Admin/Dashboard'
 import ProductList from './components/Admin/ProductList'
 import NewProduct from "./components/Admin/NewProduct";
 import UpdateProduct from "./components/Admin/UpdateProduct";
+import OrderList from "./components/Admin/OrderList";
+import ProcessOrder from "./components/Admin/ProcessOrder";
+import UsersList from "./components/Admin/UsersList";
+import UpdateUser from "./components/Admin/UpdateUser";
+import ProductReviews from "./components/Admin/ProductReviews";
+import NotFound from "./components/NotFound/NotFound";
 
 
 function App() {
@@ -59,6 +65,8 @@ function App() {
     getStripeApiKey();
 
   },[])
+
+  window.addEventListener("contextmenu", (e)=>e.preventDefault())
 
 
   return (
@@ -156,6 +164,52 @@ function App() {
          } />
 
           
+          
+          
+
+          <Route path="/admin/orders" element={
+             <Protected isAuthenticated={isAuthenticated} isAdmin={true}>
+             <OrderList/>
+           </Protected>
+         } />
+
+          
+          
+
+          <Route path="/admin/order/:id" element={
+             <Protected isAuthenticated={isAuthenticated} isAdmin={true}>
+             <ProcessOrder/>
+           </Protected>
+         } />
+
+          
+          
+
+          <Route path="/admin/users" element={
+             <Protected isAuthenticated={isAuthenticated} isAdmin={true}>
+             <UsersList/>
+           </Protected>
+         } />
+
+          
+          
+
+          <Route path="/admin/user/:id" element={
+             <Protected isAuthenticated={isAuthenticated} isAdmin={true}>
+             <UpdateUser/>
+           </Protected>
+         } />
+
+          
+          
+
+          <Route path="/admin/reviews" element={
+             <Protected isAuthenticated={isAuthenticated} isAdmin={true}>
+             <ProductReviews/>
+           </Protected>
+         } />
+
+          
 
           <Route element={<Protected isAuthenticated={isAuthenticated} >
             <ElementsLayout stripe={loadStripe(stripeApiKey)} />
@@ -175,6 +229,10 @@ function App() {
           <Route path="/password/reset/:token" element={<ResetPassword/>} />
           <Route path="/cart" element={<Cart/>} />
           <Route path="/login" element={<LoginSignup/>} />
+
+
+
+          <Route path="*" element={<NotFound/>} />
 
       </Routes>
      <Footer/>

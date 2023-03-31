@@ -45,12 +45,51 @@ const profileSlice = createSlice({
            state.isUpdated= false;
 
         },
+        updateUserRequest(state, action){
+           
+           state.isLoading = true;
+        },
+        updateUserSuccess(state, action){
+           state.isLoading = false;
+           state.isUpdated = action.payload;
+        
+        },
+        updateUserFail(state, action){
+           state.isLoading = false;
+           state.error= action.payload;
+
+        },
+        updateUserReset(state, action){
+          
+           state.isUpdated= false;
+
+        },
+        deleteUserRequest(state, action){
+           
+           state.isLoading = true;
+        },
+        deleteUserSuccess(state, action){
+           state.isLoading = false;
+           state.isDeleted = action.payload.success;
+           state.message = action.payload.message;
+        
+        },
+        deleteUserFail(state, action){
+           state.isLoading = false;
+           state.error= action.payload;
+
+        },
+        deleteUserReset(state, action){
+          
+           state.isDeleted= false;
+
+        },
         clearErrors(state,action){
             state.error=null;
         },
     }
 })
- export const { updateProfileFail, updateProfileRequest, updateProfileSuccess, updateProfileReset,clearErrors , updatePasswordFail, updatePasswordRequest, updatePasswordReset, updatePasswordSuccess }  = profileSlice.actions; 
+ export const { updateProfileFail, updateProfileRequest, updateProfileSuccess, updateProfileReset,clearErrors , updatePasswordFail, updatePasswordRequest, updatePasswordReset, updatePasswordSuccess, updateUserFail, updateUserRequest, updateUserReset, updateUserSuccess, deleteUserFail, deleteUserRequest, deleteUserReset, deleteUserSuccess }  = profileSlice.actions; 
 
 export default profileSlice;
 
