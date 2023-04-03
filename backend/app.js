@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const dotenv = require("dotenv");
 const fileUpload = require('express-fileupload')
+const path = require('path')
 
 
 const errorMiddleware = require('./middleware/error')
@@ -33,6 +34,22 @@ app.use('/api/v1', productroutes);
 app.use('/api/v1', userroutes);
 app.use('/api/v1', orderroutes);
 app.use('/api/v1', paymentroutes);
+
+
+// serving the frontend 
+app.use(express.static(this.path.join(__dirname, "../frontend/build")))
+
+app.get('*', (_,res)=>{
+    res.sendFile(
+        this.path.join(__dirname, "../frontend/build/index.html"),
+        function(err){
+            res.status(500).send(err)
+        }
+    )
+})
+
+
+
 
 // middleware for Error 
 app.use(errorMiddleware)
