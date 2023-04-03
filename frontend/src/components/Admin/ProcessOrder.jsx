@@ -22,7 +22,7 @@ const ProcessOrder = () => {
   const { order, error, isLoading } = useSelector((state) => state.orderDetails);
   const { error: updateError, isUpdated } = useSelector((state) => state.deleteAndUpdateOrder);
 
-  console.log(order);
+ 
 
   const updateOrderSubmitHandler = (e) => {
     e.preventDefault();
