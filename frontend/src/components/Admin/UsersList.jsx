@@ -8,7 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import SideBar from "./Sidebar";
 import {deleteUser, clearError, gettAllUsers} from '../../actions/adminUserAction'
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { deleteUserReset } from "../../store/slices/profileSlice";
 import { Button } from "@mui/material";
@@ -124,7 +124,7 @@ const UsersList = () => {
 
   return (
     <>
-     <ToastContainer/>
+    
       <MetaData title={`ALL USERS - Admin`} />
 
       <div className="dashboard">

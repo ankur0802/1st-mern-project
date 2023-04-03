@@ -6,18 +6,27 @@ import MetaData from '../navbar/MetaData'
 import {getProduct} from '../../actions/productActions'
 import {useDispatch, useSelector} from 'react-redux'
 import Loader from '../Loader/Loader'
+import { toast } from 'react-toastify'
+import { clearError } from '../../actions/profileAction'
 
 
 
 
 const Home = () => {
     const dispatch = useDispatch();
-    const { isLoading, products, productCount, resultPerPage, error  } = useSelector(state=>state.products)
+    const { isLoading, products, error  } = useSelector(state=>state.products)
     
 
     useEffect(()=>{
+
+        if(error){
+            toast.error(error)
+            clearError()
+        }
+
+
         dispatch(getProduct())
-    }, [dispatch])
+    }, [dispatch, error])
 
   return (
     <>

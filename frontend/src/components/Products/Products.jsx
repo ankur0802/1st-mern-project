@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './Products.css'
 import {useDispatch, useSelector} from 'react-redux'
-import {getProduct} from '../../actions/productActions'
+import {clearError, getProduct} from '../../actions/productActions'
 import Loader from '../Loader/Loader'
 import ProductCard from '../Home/ProductCard'
 import { useParams } from 'react-router-dom'
@@ -9,6 +9,7 @@ import  Pagination from 'react-js-pagination'
 import Slider  from '@mui/material/Slider'
 import  Typography from '@mui/material/Typography'
 import MetaData from '../navbar/MetaData'
+import { toast } from 'react-toastify'
 
 
 const categories = [
@@ -45,8 +46,15 @@ const Products = () => {
   }
 
   useEffect(()=>{
+
+    if(error){
+      toast.error(error)
+      clearError()
+    }
+
+    
     dispatch(getProduct(keyword, currentPage,price, category, ratings))
-  },[dispatch, keyword, currentPage, price, category, ratings])
+  },[dispatch, keyword, currentPage, price, category, ratings, error])
 
   let count = filteredProductsCount;
 

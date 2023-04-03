@@ -22,3 +22,9 @@
   .redColor {
     color: red !important;
   }
+  .column .greenColor {
+    color: green !important;
+  }
+  .column .redColor {
+    color: red !important;
+  }

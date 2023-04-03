@@ -15,7 +15,6 @@ export const login = (email, password) => async (dispatch) =>{
         
 
 
-
     } catch (error) {
         dispatch(loginFail(error.response.data.message))
         
@@ -26,10 +25,11 @@ export const login = (email, password) => async (dispatch) =>{
 export const register = (userData)=> async(dispatch)=>{
     try {
         dispatch(registerUserRequest())
+        console.log('hello');
         
         const config = {headers: {'Content-Type': 'multipart/form-data'}}
         
-console.log(userData);
+
         const {data} = await axios.post(`/api/v1/register`,userData, config)
        
 

@@ -11,7 +11,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import {Country, State} from 'country-state-city'
 import CheckoutSteps from './CheckoutSteps'
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -49,7 +49,7 @@ const Shipping = () => {
 
   return (
     <>
-    <ToastContainer/>
+    
     <MetaData title='Shipping Details' />
     <CheckoutSteps activeStep={0} />
 

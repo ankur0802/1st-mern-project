@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import './OrderDetails.css'
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getOrderDetails, clearError } from '../../actions/orderActions';
 import { Link, useParams } from 'react-router-dom';
@@ -30,7 +30,7 @@ const OrderDetails = () => {
   return (
     <>
         {isLoading? <Loader/> : (<>
-                  <ToastContainer/>
+                  
                 <MetaData title='Order Detils' />
                 <div className="orderDetailsPage">
                     <div className="orderDetailsContainer">

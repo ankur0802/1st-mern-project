@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import "./ResetPassword.css";
 import { useDispatch, useSelector } from "react-redux";
 import { clearError, resetPassword } from "../../actions/userAction";
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -51,7 +51,7 @@ const ResetPassword = () => {
 
   return (
     <>
-    <ToastContainer/>
+  
       {isLoading ? (
         <Loader />
       ) : (

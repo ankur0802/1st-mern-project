@@ -11,7 +11,7 @@ import Sidebar from './Sidebar';
 import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { updateProduct, clearError } from '../../actions/deleteAndUpdateProductAction';
 import { updateproductReset } from '../../store/slices/deleteAndUpdateProductSlice';
@@ -124,7 +124,7 @@ const categories = [
 
   return (
     <>
-    <ToastContainer/>
+    
     <MetaData title='Create Product' />
     <div className="dashboard">
         <Sidebar/>
@@ -200,7 +200,7 @@ const categories = [
                 </div>
                 
                 <div id="createProductFormImage">
-                    {oldimages && oldimages .map((image, index)=>(
+                    {oldimages && oldimages.map((image, index)=>(
                         <img src={image.url} key={index} alt='OldProduct Preview' />
                     ))}
                 </div>

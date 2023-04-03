@@ -3,7 +3,7 @@ import './UpdatePassword.css'
 import Loader from '../Loader/Loader'
 import {useDispatch, useSelector} from 'react-redux'
 import {  clearError, updatePassword } from '../../actions/profileAction'
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import MetaData from '../navbar/MetaData'
@@ -64,7 +64,7 @@ const UpdatePassword = () => {
   return (
    
     <>
-     <ToastContainer/>
+    
       {isLoading ? (
         <Loader />
       ) : (

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {clearErrors, addproductFail, addproductRequest, addproductReset, addproductSuccess} from '../store/slices/addProduct'
+import {clearErrors, addproductFail, addproductRequest, addproductSuccess} from '../store/slices/addProduct'
 
 
 

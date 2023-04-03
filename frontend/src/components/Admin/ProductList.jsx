@@ -4,7 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './ProductList.css';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
@@ -105,7 +105,7 @@ const ProductList = () => {
 
   return (
     <>
-    <ToastContainer/>
+ 
     <MetaData title={`All Products - Admin`} />
     <div className="dashboard">
       <Sidebar/>

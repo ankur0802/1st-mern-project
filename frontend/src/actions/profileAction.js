@@ -1,4 +1,4 @@
-import { updateProfileFail, updateProfileRequest, updateProfileReset, updateProfileSuccess, clearErrors , updatePasswordFail, updatePasswordRequest, updatePasswordReset, updatePasswordSuccess } from '../store/slices/profileSlice'
+import { updateProfileFail, updateProfileRequest, updateProfileSuccess, clearErrors , updatePasswordFail, updatePasswordRequest, updatePasswordSuccess } from '../store/slices/profileSlice'
 import axios from 'axios'
 
 // UPDATE Profile

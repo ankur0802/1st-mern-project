@@ -3,7 +3,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import "./productReviews.css";
 import { useSelector, useDispatch } from "react-redux";
 import SideBar from "./Sidebar";
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { deleteReview, getAllReviews, clearError } from "../../actions/reviewActions";
 import { useNavigate } from "react-router-dom";
@@ -130,7 +130,7 @@ const ProductReviews = () => {
 
   return (
     <>
-    <ToastContainer/>
+   
       <MetaData title={`ALL REVIEWS - Admin`} />
 
       <div className="dashboard">

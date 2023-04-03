@@ -3,9 +3,8 @@ import './ForgotPassword.css'
 import Loader from '../Loader/Loader'
 import {useDispatch, useSelector} from 'react-redux'
 import {  clearError, forgotPassword } from '../../actions/userAction'
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
 import MetaData from '../navbar/MetaData'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 
@@ -14,7 +13,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline'
 
 const ForgotPassword = () => {
 
-    const navigate = useNavigate();
+  
     const dispatch = useDispatch();
   
   const [email, setEmail] = useState("")
@@ -53,7 +52,7 @@ const ForgotPassword = () => {
   return (
 
     <>
-    <ToastContainer/>
+   
      {isLoading ? (
        <Loader />
      ) : (

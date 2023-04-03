@@ -1,6 +1,6 @@
 import {allUsersFail, allUsersRequest, allUsersSuccess, clearErrors} from '../store/slices/allUsersSlice'
 import {userDetailFail, userDetailRequest, userDetailSuccess } from '../store/slices/userDetailSlice'
-import {updateUserFail, updateUserRequest, updateUserReset,updateUserSuccess, deleteUserFail, deleteUserRequest, deleteUserReset, deleteUserSuccess } from '../store/slices/profileSlice'
+import {updateUserFail, updateUserRequest,updateUserSuccess, deleteUserFail, deleteUserRequest, deleteUserSuccess } from '../store/slices/profileSlice'
 
 import axios from 'axios'
 

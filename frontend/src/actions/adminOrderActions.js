@@ -1,5 +1,5 @@
 import {allOrdersFail, allOrdersRequest, allOrdersSuccess, clearErrors} from '../store/slices/adminOrderSlice'
-import {updateOrderFail, updateOrderRequest, updateOrderReset, updateOrderSuccess, deleteOrderFail, deleteOrderRequest, deleteOrderReset, deleteOrderSuccess} from '../store/slices/updateAndDeleteOrderSlice'
+import {updateOrderFail, updateOrderRequest, updateOrderSuccess, deleteOrderFail, deleteOrderRequest, deleteOrderSuccess} from '../store/slices/updateAndDeleteOrderSlice'
 import axios from 'axios'
 
 // get all orders 
@@ -57,12 +57,7 @@ export const deleteOrder = (id)=> async(dispatch)=>{
 
         dispatch(deleteOrderRequest())
 
-        const config = {
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }
-
+     
         const {data} = await axios.delete(`/api/v1/admin/orders/${id}`)
         dispatch(deleteOrderSuccess(data.success))
         

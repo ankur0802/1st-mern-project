@@ -8,7 +8,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { Backdrop } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../actions/userAction';
 
@@ -62,7 +62,7 @@ const {cartItems} = useSelector((state)=>state.cart)
 
   return (
     <>
-    <ToastContainer/>
+   
     <Backdrop open={open} />
     <SpeedDial 
     ariaLabel='SpeedDial tooltip example' 

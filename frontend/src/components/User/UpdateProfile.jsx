@@ -5,7 +5,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import FaceIcon from '@mui/icons-material/Face'
 import {useDispatch, useSelector} from 'react-redux'
 import {  clearError, updateProfile } from '../../actions/profileAction'
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 import { loadUser } from '../../actions/userAction'
@@ -29,10 +29,9 @@ const UpdateProfile = () => {
   const [name, setName ] = useState('');
   const [email, setEmail] = useState('')
 
-  const [avatar, setAvatar] = useState('/Profile.png');
-  const [avatarPreview, setAvatarPreview] = useState('/Profile.png');
-
-
+  const [avatar, setAvatar] = useState('');
+  const [avatarPreview, setAvatarPreview] = useState('');
+ 
   const  updateProfileSubmit = (e)=>{
     e.preventDefault();
 
@@ -94,7 +93,7 @@ const UpdateProfile = () => {
 
   return (
     <>
-     <ToastContainer/>
+    
       {isLoading ? (
         <Loader />
       ) : (

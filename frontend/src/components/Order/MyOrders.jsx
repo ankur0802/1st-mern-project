@@ -6,7 +6,7 @@ import MetaData from "../navbar/MetaData";
 import Loader from "../Loader/Loader";
 import { Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { clearError, getMyOrders } from "../../actions/orderActions";
 import { Link } from "react-router-dom";
@@ -90,7 +90,7 @@ const MyOrders = () => {
 
   return (
     <>
-      <ToastContainer />
+      
       <MetaData title={`${user.name} - Orders`} />
       {isLoading ? (
         <Loader />

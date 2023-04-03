@@ -10,7 +10,7 @@ import Sidebar from './Sidebar';
 import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addProduct, clearError } from '../../actions/addProductAction';
 import { addproductReset } from '../../store/slices/addProduct';
@@ -98,7 +98,7 @@ const categories = [
 
   return (
     <>
-    <ToastContainer/>
+  
     <MetaData title='Create Product' />
     <div className="dashboard">
         <Sidebar/>

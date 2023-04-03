@@ -6,7 +6,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PersonIcon from '@mui/icons-material/Person';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import SideBar from "./Sidebar";
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate, useParams } from "react-router-dom";
 import { getUserDetails , clearError, updateUser} from "../../actions/adminUserAction";
@@ -75,7 +75,7 @@ const UpdateUser = () => {
 
   return (
     <>
-        <ToastContainer/>
+   
       <MetaData title="Update User" />
       <div className="dashboard">
         <SideBar />

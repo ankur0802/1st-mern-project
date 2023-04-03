@@ -9,7 +9,7 @@ import ReviewCard from './ReviewCard'
 import Loader from '../Loader/Loader';
 import MetaData from '../navbar/MetaData';
 import { addItemsToCart } from '../../actions/cartActions'
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Dialog, DialogActions, DialogContent, DialogTitle, Button, Rating } from '@mui/material';
 import { clearError, newReview } from '../../actions/reviewActions';
@@ -103,7 +103,7 @@ const ProductDetails = () => {
    
     {isLoading ? <Loader/> : (
     <>
-     <ToastContainer/>
+     
       <MetaData title={`${product.name}--ECOMMERCE`} />
 
     <div className="ProductDetails">

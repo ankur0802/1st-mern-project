@@ -4,7 +4,7 @@ import { DataGrid } from "@mui/x-data-grid";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import './ProductList.css';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
 import { Button } from '@mui/material';
@@ -12,8 +12,7 @@ import MetaData from '../navbar/MetaData';
 import Sidebar from './Sidebar'
 import { clearError, getAllOrders } from '../../actions/adminOrderActions';
 import { deleteOrder } from '../../actions/adminOrderActions';
-import { updateOrderReset, deleteOrderReset } from '../../store/slices/updateAndDeleteOrderSlice';
-
+import { deleteOrderReset } from '../../store/slices/updateAndDeleteOrderSlice';
 
 const OrderList = () => {
 
@@ -52,14 +51,21 @@ const OrderList = () => {
       headerName: "Status",
       minWidth: 150,
       flex: 0.5,
-      cellClassName: 'redcolor'
       // cellClassName: (params) => {
+      //   return  (params.status === 'Delivered') ? "greencolor" : "redcolor";
+      
 
-      //   return (params.status === 'Delivered') ? "greencolor" : "redcolor"
+        
 
-      //   // return params.getValue(params.id, "status") === "Delivered"
-      //   //   ? "greenColor"
-      //   //   : "redColor";
+        // return clsx ('column',{
+        //   greencolor: params.value === 'Delivered',
+        //   redcolor: params.value === 'Processing'
+        //   (params.status === 'Delivered') ? "greencolor" : "redcolor"
+        // })
+
+        // return params.getValue(params.id, "status") === "Delivered"
+        //   ? "greenColor"
+        //   : "redColor";
       // },
     },
     {
@@ -104,6 +110,7 @@ const OrderList = () => {
 
   orders && 
   orders.forEach((item)=>{
+   
       rows.push({
         id:item._id,
         itemsQty:item.orderItems.length,
@@ -115,7 +122,7 @@ const OrderList = () => {
 
   return (
     <>
-    <ToastContainer/>
+    
     <MetaData title={`All Orders - Admin`} />
     <div className="dashboard">
       <Sidebar/>

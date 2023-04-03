@@ -7,7 +7,7 @@ import LockOpenIcon from '@mui/icons-material/LockOpen'
 import FaceIcon from '@mui/icons-material/Face'
 import {useDispatch, useSelector} from 'react-redux'
 import { login, clearError, register } from '../../actions/userAction'
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -123,7 +123,7 @@ const LoginSignup = () => {
   <>
   {isLoading? <Loader/>:(  <>
    
-   <ToastContainer />
+   
    <div className="LoginSignUpContainer">
      <div className="LoginSignUpBox">
        <div>

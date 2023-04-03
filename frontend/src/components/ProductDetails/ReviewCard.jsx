@@ -5,7 +5,7 @@ import './ProductDetails.css'
 
 
 const ReviewCard = ({review}) => {
-    console.log(review.rating);
+  
 
     const options = {
         edit:false,

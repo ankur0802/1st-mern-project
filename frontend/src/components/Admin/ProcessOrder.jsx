@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import MetaData from '../navbar/MetaData'
 import { Button, Typography } from '@mui/material'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import Sidebar from './Sidebar';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from '../Loader/Loader'
 import { updateOrder, clearError } from '../../actions/adminOrderActions'
@@ -16,7 +16,7 @@ import './ProcessOrder.css'
 
 const ProcessOrder = () => {
 
-  const navigate = useNavigate();
+  
   const dispatch = useDispatch();
   const params = useParams()
   const { order, error, isLoading } = useSelector((state) => state.orderDetails);
@@ -59,7 +59,7 @@ const ProcessOrder = () => {
 
 
     <>
-    <ToastContainer/>
+  
  
     <MetaData title="Process Order" />
       <div className="dashboard">

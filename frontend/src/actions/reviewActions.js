@@ -1,6 +1,6 @@
 import {clearErrors, newReviewFail, newReviewRequest, newReviewSuccess} from '../store/slices/reviewSlice'
 import {allReviewsFail, allReviewsRequest, allReviewsSuccess} from '../store/slices/allReviewsSlice'
-import {deleteReviewsFail, deleteReviewsRequest, deleteReviewsSuccess, deleteReviewsReset} from '../store/slices/deleteReviewsSlice'
+import {deleteReviewsFail, deleteReviewsRequest, deleteReviewsSuccess} from '../store/slices/deleteReviewsSlice'
 import axios from 'axios'
 
 

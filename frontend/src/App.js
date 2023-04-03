@@ -18,13 +18,11 @@ import UpdateProfile from './components/User/UpdateProfile'
 import UpdatePassword from './components/User/UpdatePassword'
 import ForgotPassword from './components/User/ForgotPassword'
 import ResetPassword from './components/User/ResetPassword'
-import Cookies from 'js-cookie'
 import Cart from "./components/Cart/Cart";
 import Shipping from "./components/Cart/Shipping";
 import ConfirmOrder from './components/Cart/ConfirmOrder'
 import Payment from './components/Cart/Payment'
 import axios from "axios";
-import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import ElementsLayout from "./components/Route/ElementLayout";
 import OrderSuccess from "./components/Cart/OrderSuccess";
@@ -40,11 +38,13 @@ import UsersList from "./components/Admin/UsersList";
 import UpdateUser from "./components/Admin/UpdateUser";
 import ProductReviews from "./components/Admin/ProductReviews";
 import NotFound from "./components/NotFound/NotFound";
+import { ToastContainer } from "react-toastify";
+
 
 
 function App() {
-  const token = Cookies.get();
 
+  
 
   const {isAuthenticated, user}= useSelector((state)=>state.user)
 
@@ -57,12 +57,14 @@ function App() {
     setStripeApiKey(data.stripeApiKey);
   }
 
+
   useEffect(()=>{
  
 
     store.dispatch(loadUser())
 
     getStripeApiKey();
+
 
   },[])
 
@@ -71,6 +73,7 @@ function App() {
 
   return (
     <Router>
+      <ToastContainer/>
       <Navbar/>
       {isAuthenticated && <UserOptions user={user} />}
      
@@ -218,12 +221,6 @@ function App() {
              <Payment/>
           } />
           </Route> 
-
-       
-
-        
-
-         
 
           <Route path="/password/forgot" element={<ForgotPassword/>} />
           <Route path="/password/reset/:token" element={<ResetPassword/>} />
