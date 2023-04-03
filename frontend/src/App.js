@@ -44,8 +44,6 @@ import { ToastContainer } from "react-toastify";
 
 function App() {
 
-  
-
   const {isAuthenticated, user}= useSelector((state)=>state.user)
 
   const [stripeApiKey, setStripeApiKey] = useState("")

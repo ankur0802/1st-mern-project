@@ -28,7 +28,6 @@ const addproductSlice = createSlice({
         addproductReset(state, action){
             state.success = false;
            
-
         },
        
         clearErrors(state,action){

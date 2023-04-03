@@ -45,12 +45,6 @@ const deleteAndUpdateproductSlice = createSlice({
 
         },
        
-        updateproductReset(state, action){
-            state.isUpdated = false;
-           
-
-        },
-       
         clearErrors(state,action){
             state.error=null;
         },

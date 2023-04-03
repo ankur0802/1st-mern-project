@@ -23,12 +23,7 @@ const updateAndDeleteOrderSlice = createSlice({
            
         },
         
-        updateOrderReset(state, action){
-            state.isUpdated=   false;
-          
-           
-
-        },
+      
         deleteOrderRequest(state, action){
           
            state.isLoading = true;
