@@ -25,7 +25,7 @@ export const login = (email, password) => async (dispatch) =>{
 export const register = (userData)=> async(dispatch)=>{
     try {
         dispatch(registerUserRequest())
-        console.log('hello');
+      
         
         const config = {headers: {'Content-Type': 'multipart/form-data'}}
         
