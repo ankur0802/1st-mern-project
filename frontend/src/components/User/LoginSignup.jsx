@@ -6,7 +6,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import LockOpenIcon from '@mui/icons-material/LockOpen'
 import FaceIcon from '@mui/icons-material/Face'
 import {useDispatch, useSelector} from 'react-redux'
-import { login, clearError, register } from '../../actions/userAction'
+import { login, clearError, register, clearUserr } from '../../actions/userAction'
 import {  toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
@@ -20,9 +20,10 @@ const LoginSignup = () => {
   const navigate = useNavigate();
 
 
-  const { error, isLoading, isAuthenticated } = useSelector(
+  const { error, isLoading, isAuthenticated, message  } = useSelector(
     (state) => state.user
   );
+
 
 
   const loginTab= useRef(null)
@@ -32,13 +33,13 @@ const LoginSignup = () => {
   const [loginEmail, setLoginEmail] = useState('')
   const [loginPassword, setLoginPassword] = useState('')
 
-  const [user, setUser] = useState({
+  const [userr, setUserr] = useState({
     name : '',
     email : '',
     password :'',
   })
 
-  const {name, email, password} = user;
+  const {name, email, password} = userr;
 
   const [avatar, setAvatar] = useState('/Profile.png');
   const [avatarPreview, setAvatarPreview] = useState('/Profile.png');
@@ -48,6 +49,18 @@ const LoginSignup = () => {
     e.preventDefault();
     dispatch(login(loginEmail, loginPassword))
   }
+
+  const {  user  } = useSelector(
+    (state) => state.user
+  );
+  if(user){
+    if(user.verified){
+      
+      navigate('/account')
+    }  
+
+  }
+
 
   const registerSubmit = (e)=>{
     e.preventDefault();
@@ -79,7 +92,7 @@ const LoginSignup = () => {
       reader.readAsDataURL(e.target.files[0])
 
      }else{
-      setUser({...user, [e.target.name]:e.target.value})
+      setUserr({...userr, [e.target.name]:e.target.value})
      }
 
   }
@@ -93,11 +106,15 @@ const LoginSignup = () => {
       dispatch(clearError())
       
     }
+    
     if(isAuthenticated){
-      navigate('/account')
+      toast.success(message)
+      dispatch(clearUserr)
+      navigate('/login')
     }
+    
 
-  },[dispatch, error, navigate, isAuthenticated])
+  },[dispatch, error, navigate, isAuthenticated, message, user])
 
   
 

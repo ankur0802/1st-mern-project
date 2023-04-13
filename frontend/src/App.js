@@ -39,6 +39,7 @@ import UpdateUser from "./components/Admin/UpdateUser";
 import ProductReviews from "./components/Admin/ProductReviews";
 import NotFound from "./components/NotFound/NotFound";
 import { ToastContainer } from "react-toastify";
+import EmailVerify from "./components/Email/EmailVerify";
 
 
 
@@ -46,6 +47,7 @@ function App() {
 
   const {isAuthenticated, user}= useSelector((state)=>state.user)
 
+ 
   const [stripeApiKey, setStripeApiKey] = useState("")
 
   async function getStripeApiKey(){
@@ -73,7 +75,7 @@ function App() {
     <Router>
       <ToastContainer/>
       <Navbar/>
-      {isAuthenticated && <UserOptions user={user} />}
+      {isAuthenticated && user.verified && <UserOptions user={user} />}
      
       <Routes>
           <Route path="/" element={<Home/>} />
@@ -81,6 +83,7 @@ function App() {
           <Route path="/products" element={<Products/>} />
           <Route path="/products/:keyword" element={<Products/>} />
           <Route path="/search" element={<Search/>} />
+          <Route path="/users/:id/verify/:token" element={<EmailVerify/>} />
 
           
             

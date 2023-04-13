@@ -1,4 +1,4 @@
-import { loginFail, loginRequest, loginSuccess, clearErrors, registerUserFail, registerUserRequest, registerUserSuccess, loadUserFail, loadUserRequest, loadUserSuccess , logoutFail, logoutSuccess , forgotPasswordFail, forgotPasswordRequest, forgotPasswordSuccess , resetPasswordFail, resetPasswordRequest, resetPasswordSuccess } from '../store/slices/userSlice'
+import { loginFail, loginRequest, loginSuccess, clearErrors, registerUserFail, registerUserRequest, registerUserSuccess, loadUserFail, loadUserRequest, loadUserSuccess , logoutFail, logoutSuccess , forgotPasswordFail, forgotPasswordRequest, forgotPasswordSuccess , resetPasswordFail, resetPasswordRequest, resetPasswordSuccess, clearUser } from '../store/slices/userSlice'
 import axios from 'axios'
 
 // LOGIN 
@@ -10,8 +10,8 @@ export const login = (email, password) => async (dispatch) =>{
         const config = {headers: {'Content-Type': 'application/json'}}
 
         const {data} = await axios.post(`/api/v1/login`, {email, password}, config)
-
-        dispatch(loginSuccess(data.user))
+ 
+        dispatch(loginSuccess(data))
         
 
 
@@ -33,7 +33,7 @@ export const register = (userData)=> async(dispatch)=>{
         const {data} = await axios.post(`/api/v1/register`,userData, config)
        
 
-        dispatch(registerUserSuccess(data.user))
+        dispatch(registerUserSuccess(data))
         
     } catch (error) {
         dispatch(registerUserFail(error.response.data.message))
@@ -128,4 +128,9 @@ export const resetPassword = (token, passwords) => async (dispatch) =>{
 // Clearing Errors 
 export const clearError = ()=> async(dispatch)=>{
     dispatch(clearErrors());
+}
+
+// Clearing users 
+export const clearUserr = ()=> async(dispatch)=>{
+    dispatch(clearUser());
 }

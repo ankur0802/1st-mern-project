@@ -18,7 +18,7 @@ router.get('/admin/users', isAuthenticatedUser, authorizeRoles('admin') ,userCon
 router.get('/admin/user/:id', isAuthenticatedUser, authorizeRoles('admin') ,userController.getSingleUser)
 router.put('/admin/user/:id', isAuthenticatedUser, authorizeRoles('admin') ,userController.updateRole)
 router.delete('/admin/user/:id', isAuthenticatedUser, authorizeRoles('admin') ,userController.deleteUser)
-router.get('/:id/verify/:token', userController.verifyEmail)
+router.get('/users/:id/verify/:token', userController.verifyEmail)
 
 
 

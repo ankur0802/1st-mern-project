@@ -10,6 +10,7 @@ const Token = require("../models/token");
 // Register a User
 
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+  
   const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
     folder: "avatars",
     width: 150,
@@ -17,6 +18,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   });
 
   const { name, email, password } = req.body;
+  
 
   let user = await User.create({
     name,
@@ -28,18 +30,20 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     },
   });
 
+ 
+
   const token = await new Token({
     userId: user._id,
     token: crypto.randomBytes(32).toString("hex"),
   }).save();
 
-  const url = `${req.protocol}://${req.get("host")}users/${user._id}/verify/${
+  const url = `http://192.168.1.61:3000/users/${user._id}/verify/${
     token.token
   }`;
 
   const message = `Your Email Verification Token is :- \n\n ${url} \n\n If you have not requested this email then, please ignore it`;
 
-  try {
+ 
     await sendEmail({
       email: user.email,
       subject: `Verify Email`,
@@ -49,15 +53,16 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     res.status(201).json({
       success: true,
       message: "An Email Sent to your Account Please Verify",
+      user
     });
-  } catch (error) {
-    return next(new Errorhandler(error.message, 500));
-  }
+  
 });
 
 // verify Email for registation
 exports.verifyEmail = catchAsyncErrors(async (req, res, next) => {
+ 
   const user = await User.findOne({ _id: req.params.id });
+  
   if (!user) {
     return next(new Errorhandler("Invalid Link", 400));
   }
@@ -66,15 +71,14 @@ exports.verifyEmail = catchAsyncErrors(async (req, res, next) => {
     userId: user._id,
     token: req.params.token,
   });
+ 
   if (!token) {
     return next(new Errorhandler("Invalid Link", 400));
   }
 
-  await User.updateOne({
-    _id: user._id,
-    verified: true,
-  });
-  await token.deleteOne();
+  await User.updateOne({_id: user._id}, {$set:{ verified: true}}, {new: true});
+
+  await Token.deleteOne({userId: user._id});
 
   res.status(200).json({
     success: true,
@@ -87,6 +91,7 @@ exports.verifyEmail = catchAsyncErrors(async (req, res, next) => {
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
+  
 
   if (!email || !password) {
     return next(new Errorhandler("Please Enter Your Email & Password", 400));
@@ -103,7 +108,8 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   if (!isPasswordMatch) {
     return next(new Errorhandler("Invalid Email or Password", 401));
   }
-
+  
+ 
   if (user.verified) {
     sendToken(user, 200, res);
   } else {
@@ -115,7 +121,6 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
     if(token){
       await Token.deleteOne({userId: user._id});
     }
-   
 
 
     if (!token) {
@@ -124,13 +129,13 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
         token: crypto.randomBytes(32).toString("hex"),
       }).save();
 
-      const url = `${req.protocol}://${req.get("host")}users/${
+      const url = `http://192.168.1.61:3000/users/${
         user._id
       }/verify/${token.token}`;
 
       const message = `Your Email Verification Token is :- \n\n ${url} \n\n If you have not requested this email then, please ignore it`;
 
-      try {
+    
         await sendEmail({
           email: user.email,
           subject: `Verify Email`,
@@ -140,10 +145,9 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
         res.status(201).json({
           success: true,
           message: "An Email Sent to your Account Please Verify",
+          user
         });
-      } catch (error) {
-        return next(new Errorhandler(error.message, 500));
-      }
+     
     }
   }
 });
