@@ -42,7 +42,7 @@ const Dashboard = () => {
      })
 
 
-  const lineState = {
+    const lineState = {
     labels:['Initial Amount', 'Amount Earned'],
     datasets:[
       {
@@ -54,6 +54,7 @@ const Dashboard = () => {
     ]
 
   }
+
 
   const doughnutState = {
     labels:['Out of Stock', 'InStock'],

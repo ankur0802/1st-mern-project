@@ -11,7 +11,7 @@ import LoginSignup from "./components/User/LoginSignup";
 import store from './store/store'
 import { loadUser } from "./actions/userAction";
 import UserOptions from "./components/navbar/UserOptions";
-import { useSelector } from "react-redux";
+import {  useSelector } from "react-redux";
 import Account from "./components/Account/Account";
 import Protected from "./components/Route/Protected";
 import UpdateProfile from './components/User/UpdateProfile'
@@ -43,6 +43,7 @@ import EmailVerify from "./components/Email/EmailVerify";
 
 
 
+
 function App() {
 
   const {isAuthenticated, user}= useSelector((state)=>state.user)
@@ -59,7 +60,6 @@ function App() {
 
 
   useEffect(()=>{
- 
 
     store.dispatch(loadUser())
 
