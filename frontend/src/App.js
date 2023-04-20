@@ -75,7 +75,7 @@ function App() {
     <Router>
       <ToastContainer/>
       <Navbar/>
-      {isAuthenticated && user.verified && <UserOptions user={user} />}
+      {isAuthenticated ? (user && user.verified && <UserOptions user={user} />):(isAuthenticated && <UserOptions user={user} />)}
      
       <Routes>
           <Route path="/" element={<Home/>} />

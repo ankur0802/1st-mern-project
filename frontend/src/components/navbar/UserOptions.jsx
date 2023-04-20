@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../actions/userAction';
 
 const UserOptions = ({user}) => {
+   
     const dispatch = useDispatch();
   const navigate = useNavigate();
 
